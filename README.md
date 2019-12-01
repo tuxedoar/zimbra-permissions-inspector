@@ -17,7 +17,7 @@ Tested on Zimbra v8.8.12
 ### Installation
 Coming soon!.
 
-#### Usage
+### Usage
 Help output:
 ```
 usage: zimbra-permissions-inspector [-h] [-l ZDL] [-sa]
