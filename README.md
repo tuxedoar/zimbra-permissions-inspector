@@ -8,7 +8,7 @@ list all the existing ZDLs (both dynamic and static).
 
 ### Requirements
 Make sure you meet the following requirements:
- * In order for this script to work, you need to [setup the LDAP admin user](https://wiki.zimbra.com/wiki/Setting_zimbra_admin_password_in_LDAP), 
+ * Make sure to [setup the Zimbra LDAP admin user](https://wiki.zimbra.com/wiki/Setting_zimbra_admin_password_in_LDAP), 
 on your Zimbra server.
  * You need the [python-ldap](https://pypi.python.org/pypi/python-ldap/) package.     
 
