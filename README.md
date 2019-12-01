@@ -20,8 +20,8 @@ Coming soon!.
 ### Usage
 Help output:
 ```
-usage: zimbra-permissions-inspector [-h] [-l ZDL] [-sa]
-                                    SERVER BASEDN LDAP_ADMIN
+usage: zimbra-permissions-inspector.py [-h] [-l ZDL] [-sa] [-v]
+                                       SERVER BASEDN LDAP_ADMIN
 
 Query sending permissions on a Zimbra server
 
@@ -37,6 +37,7 @@ optional arguments:
                      mails to the given ZDL
   -sa, --sendas      Query 'send as' permissions on both Zimbra accounts and
                      ZDLs
+  -v, --version      Show current version
 ```
 Note that positional arguments are mandatory!.
 
