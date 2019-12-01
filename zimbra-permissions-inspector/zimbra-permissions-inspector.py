@@ -16,32 +16,9 @@
 import argparse
 import sys
 import getpass
+from distutils.version import LooseVersion
+from _version import __version__
 import ldap
-
-def menu_handler():
-    """ Handle and return command line arguments """
-    parser = argparse.ArgumentParser(
-      description='Query sending permissions on a Zimbra server')
-    parser.add_argument('SERVER', help='URI formatted address of the Zimbra server')
-    parser.add_argument('BASEDN', help='Specify the searchbase or base DN of the Zimbra LDAP server')
-    parser.add_argument('LDAP_ADMIN', help='Admin user of the Zimbra LDAP server')
-    parser.add_argument('-l', '--zdl', required=False, action='store',
-                        help='Query which Zimbra accounts have permissions to send mails to the given ZDL')
-    parser.add_argument('-sa', '--sendas', required=False, action='store_true',
-                        help="Query 'send as' permissions on both Zimbra accounts and ZDLs")
-
-    args = parser.parse_args()
-    return args
-
-
-def connect_to_zimbra_ldap(server, basedn, adminuser, creds):
-    """ Connect to the LDAP Zimbra server """
-    l = ldap.initialize(server)
-    l.simple_bind_s(adminuser, creds)
-
-    ldap_data = l.search_s(basedn, ldap.SCOPE_SUBTREE, 'objectClass=*')
-
-    return ldap_data
 
 
 def main():
@@ -66,6 +43,35 @@ def main():
     # If no optional arguments are given, show existing ZDLs!.
     else:
         get_lists(ldap_data)
+
+
+def menu_handler():
+    """ Handle and return command line arguments """
+    parser = argparse.ArgumentParser(
+      description='Query sending permissions on a Zimbra server')
+    parser.add_argument('SERVER', help='URI formatted address of the Zimbra server')
+    parser.add_argument('BASEDN', help='Specify the searchbase or base DN of the Zimbra LDAP server')
+    parser.add_argument('LDAP_ADMIN', help='Admin user of the Zimbra LDAP server')
+    parser.add_argument('-l', '--zdl', required=False, action='store',
+                        help='Query which Zimbra accounts have permissions to send mails to the given ZDL')
+    parser.add_argument('-sa', '--sendas', required=False, action='store_true',
+                        help="Query 'send as' permissions on both Zimbra accounts and ZDLs")
+    parser.add_argument('-v', '--version', action='version',
+                          version="%(prog)s {version}".format(version=__version__),
+                           help='Show current version')
+
+    args = parser.parse_args()
+    return args
+
+
+def connect_to_zimbra_ldap(server, basedn, adminuser, creds):
+    """ Connect to the LDAP Zimbra server """
+    l = ldap.initialize(server)
+    l.simple_bind_s(adminuser, creds)
+
+    ldap_data = l.search_s(basedn, ldap.SCOPE_SUBTREE, 'objectClass=*')
+
+    return ldap_data
 
 
 def get_dynamic_static_lists(attrs, objectclass, authorized_id, lists):
