@@ -17,7 +17,6 @@ setup(
     scripts=["zimbra_permissions_inspector/_version.py"],
     entry_points={
         "console_scripts": [
-        #"ldap-attributes-selector = ldap_attributes_selector.ldap_attributes_selector:main",
         "zimbra-permissions-inspector = zimbra_permissions_inspector.zimbra_permissions_inspector:main",
         ],
     },

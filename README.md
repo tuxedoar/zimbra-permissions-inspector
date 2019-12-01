@@ -15,7 +15,10 @@ on your Zimbra server.
 Tested on Zimbra v8.8.12
 
 ### Installation
-Coming soon!.
+You can install it with `pip`:
+```
+pip install zimbra-permissions-inspector
+```
 
 ### Usage
 Help output:
